@@ -1,0 +1,51 @@
+class Solution {
+    string extraSpace(string s){
+        string st;
+        int i=0,j=s.length()-1;
+           while(i<s.length() && s[i]==32)
+           i++;
+
+           while(j>=0 && s[j]==32)
+           j--;
+
+           while(i<=j){
+               if(s[i]==32){
+                   while(i<=j && s[i]==32)
+                   i++;
+
+                   st.push_back(' ');
+               }
+               else{
+               st.push_back(s[i]);
+               i++;
+               }
+           }
+           return st;
+    }
+public:
+    string reverseWords(string s) {
+        s=extraSpace(s);
+        string temp="";
+        string ans="";
+        int i=s.length()-1;
+        while(i>=0){
+            if(s[i]!=32)
+            ans+=s[i];
+            else if(s[i]==32){
+                reverse(ans.begin(),ans.end());
+                for(int i=0;i<ans.length();i++){
+                temp+=ans[i];
+                }
+                temp+=' ';
+                while(!ans.empty())
+                ans.pop_back();
+            }
+            i--;    
+        }
+            reverse(ans.begin(),ans.end());
+            for(int i=0;i<ans.length();i++){
+            temp+=ans[i];
+            }
+        return temp;
+    }
+};
